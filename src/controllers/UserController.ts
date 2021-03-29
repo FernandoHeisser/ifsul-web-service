@@ -1,11 +1,20 @@
 import { Request, Response } from 'express'
 
 class UserController {
+
+    createUser(request: Request, response: Response){
+        return response.json({
+            message: "UserController.createUser"
+        });
+    }
     getUsers(request: Request, response: Response){
         return response.json({
-            name: "Fernando",
-            lastname: "Heisser",
-            age: 21
+            message: "UserController.getUsers"
+        });
+    }
+    getUserById(request: Request, response: Response){
+        return response.json({
+            message: "UserController.getUserById"
         });
     }
 }
