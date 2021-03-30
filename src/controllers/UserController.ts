@@ -13,8 +13,10 @@ class UserController {
         });
     }
     getUserById(request: Request, response: Response){
+        const {id} = request.params;
+
         return response.json({
-            message: "UserController.getUserById"
+            message: `UserController.getUserById(${id})`
         });
     }
 }

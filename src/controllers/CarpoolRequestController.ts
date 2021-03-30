@@ -13,13 +13,17 @@ class CarpoolRequestController {
         });
     }
     getCarpoolRequestById(request: Request, response: Response){
+        const {id} = request.params;
+
         return response.json({
-            message: "CarpoolRequestController.getCarpoolRequestById"
+            message: `CarpoolRequestController.getCarpoolRequestById(${id})`
         });
     }
     getCarpoolRequestByUserId(request: Request, response: Response){
+        const {id} = request.params;
+
         return response.json({
-            message: "CarpoolRequestController.getCarpoolRequestByUserId"
+            message: `CarpoolRequestController.getCarpoolRequestByUserId(${id})`
         });
     }
 }

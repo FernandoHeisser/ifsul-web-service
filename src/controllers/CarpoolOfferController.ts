@@ -13,13 +13,17 @@ class CarpoolOfferController {
         });
     }
     getCarpoolOfferById(request: Request, response: Response){
+        const {id} = request.params;
+
         return response.json({
-            message: "CarpoolOfferController.getCarpoolOfferById"
+            message: `CarpoolOfferController.getCarpoolOfferById(${id})`
         });
     }
     getCarpoolOfferByUserId(request: Request, response: Response){
+        const {id} = request.params;
+        
         return response.json({
-            message: "CarpoolOfferController.getCarpoolOfferByUserId"
+            message: `CarpoolOfferController.getCarpoolOfferByUserId(${id})`
         });
     }
 }

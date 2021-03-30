@@ -8,18 +8,24 @@ class CarpoolMatchController {
         });
     }
     getCarpoolMatchsById(request: Request, response: Response){
+        const {id} = request.params;
+
         return response.json({
-            message: "CarpoolMatchController.getCarpoolMatchsById"
+            message: `CarpoolMatchController.getCarpoolMatchsById(${id})`
         });
     }
     getCarpoolMatchsByCarpoolRequestId(request: Request, response: Response){
+        const {id} = request.params;
+
         return response.json({
-            message: "CarpoolMatchController.getCarpoolMatchsByCarpoolRequestId"
+            message: `CarpoolMatchController.getCarpoolMatchsByCarpoolRequestId(${id})`
         });
     }
     getCarpoolMatchsByCarpoolOfferId(request: Request, response: Response){
+        const {id} = request.params;
+
         return response.json({
-            message: "CarpoolMatchController.getCarpoolMatchsByCarpoolOfferId"
+            message: `CarpoolMatchController.getCarpoolMatchsByCarpoolOfferId(${id})`
         });
     }
 }
