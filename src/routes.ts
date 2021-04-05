@@ -12,23 +12,23 @@ const carpoolRequestController = new CarpoolRequestController;
 const carpoolOfferController = new CarpoolOfferController;
 const carpoolMatchController = new CarpoolMatchController;
 
-routes.post('/user', userController.createUser);
-routes.get('/users', userController.getUsers);
-routes.get('/user/:id', userController.getUserById);
+routes.post('/api/user', userController.createUser);
+routes.get('/api/users', userController.getUsers);
+routes.get('/api/user/:id', userController.getUserById);
 
-routes.post('/carpool/request', carpoolRequestController.createCarpoolRequest);
-routes.get('/carpool/requests', carpoolRequestController.getCarpoolRequests);
-routes.get('/carpool/request/:id', carpoolRequestController.getCarpoolRequestById);
-routes.get('/carpool/request/user/:id', carpoolRequestController.getCarpoolRequestByUserId);
+routes.post('/api/carpool/request', carpoolRequestController.createCarpoolRequest);
+routes.get('/api/carpool/requests', carpoolRequestController.getCarpoolRequests);
+routes.get('/api/carpool/request/:id', carpoolRequestController.getCarpoolRequestById);
+routes.get('/api/carpool/request/user/:id', carpoolRequestController.getCarpoolRequestByUserId);
 
-routes.post('/carpool/offer', carpoolOfferController.createCarpoolOffer);
-routes.get('/carpool/offers', carpoolOfferController.getCarpoolOffers);
-routes.get('/carpool/offer/:id', carpoolOfferController.getCarpoolOfferById);
-routes.get('/carpool/offer/user/:id', carpoolOfferController.getCarpoolOfferByUserId);
+routes.post('/api/carpool/offer', carpoolOfferController.createCarpoolOffer);
+routes.get('/api/carpool/offers', carpoolOfferController.getCarpoolOffers);
+routes.get('/api/carpool/offer/:id', carpoolOfferController.getCarpoolOfferById);
+routes.get('/api/carpool/offer/user/:id', carpoolOfferController.getCarpoolOfferByUserId);
 
-routes.post('/carpool/match', carpoolMatchController.createCarpoolMatch);
-routes.get('/carpool/match/:id', carpoolMatchController.getCarpoolMatchsById);
-routes.get('/carpool/match/request/:id', carpoolMatchController.getCarpoolMatchsByCarpoolRequestId);
-routes.get('/carpool/match/offer/:id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferId);
+routes.post('/api/carpool/match', carpoolMatchController.createCarpoolMatch);
+routes.get('/api/carpool/match/:id', carpoolMatchController.getCarpoolMatchsById);
+routes.get('/api/carpool/match/request/:id', carpoolMatchController.getCarpoolMatchsByCarpoolRequestId);
+routes.get('/api/carpool/match/offer/:id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferId);
 
 export default routes;
