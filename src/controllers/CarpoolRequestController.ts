@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import CarpoolRequestRepository from '../repositories/CarpoolRequestRepository'
 
 class CarpoolRequestController {
 
@@ -27,5 +28,4 @@ class CarpoolRequestController {
         });
     }
 }
-
 export default CarpoolRequestController;

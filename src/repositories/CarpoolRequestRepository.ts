@@ -1,3 +1,5 @@
+import CarpoolRequest from '../models/CarpoolRequest';
+import knex from '../database/connection';
 
 class CarpoolRequestRepository {
     tableName = "carpools_requested";
@@ -15,3 +17,4 @@ class CarpoolRequestRepository {
         
     }
 }
+export default CarpoolRequestRepository;

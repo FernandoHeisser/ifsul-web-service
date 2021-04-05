@@ -58,3 +58,4 @@ class User {
     getCarpoolOffered = () => this.carpoolOffered;
     getCarpoolRequested = () => this.carpoolRequested;
 }
+export default User;

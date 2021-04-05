@@ -16,3 +16,4 @@ class CarpoolMatch {
     setAccepted = () => this.accepted = true;
     getAccepted = () => this.accepted;
 }
+export default CarpoolMatch;

@@ -37,3 +37,4 @@ class CarpoolRequest {
     setDone = () => this.done = true;
     setCanceled = () => this.canceled = true;
 }
+export default CarpoolRequest;

@@ -43,3 +43,4 @@ class CarpoolOffer {
     addAvailableVacancies = () => this.availableVacancies++;
     removeAvailableVacancies = () => this.availableVacancies--;
 }
+export default CarpoolOffer;

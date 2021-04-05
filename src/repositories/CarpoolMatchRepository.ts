@@ -1,3 +1,5 @@
+import CarpoolMatch from '../models/CarpoolMatch';
+import knex from '../database/connection';
 
 class CarpoolMatchRepository {
     tableName = "carpool_match";
@@ -15,3 +17,4 @@ class CarpoolMatchRepository {
         
     }
 }
+export default CarpoolMatchRepository;

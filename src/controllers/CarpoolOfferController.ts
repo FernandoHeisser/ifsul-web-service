@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository'
 
 class CarpoolOfferController {
 
@@ -27,5 +28,4 @@ class CarpoolOfferController {
         });
     }
 }
-
 export default CarpoolOfferController;

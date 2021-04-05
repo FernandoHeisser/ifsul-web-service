@@ -7,7 +7,7 @@ import CarpoolMatchController from './controllers/CarpoolMatchController'
 
 const routes = express.Router();
 
-const userController = new UserController;
+const userController = new UserController();
 const carpoolRequestController = new CarpoolRequestController;
 const carpoolOfferController = new CarpoolOfferController;
 const carpoolMatchController = new CarpoolMatchController;

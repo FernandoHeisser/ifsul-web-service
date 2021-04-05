@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import CarpoolMatchRepository from '../repositories/CarpoolMatchRepository'
 
 class CarpoolMatchController {
 
@@ -29,5 +30,4 @@ class CarpoolMatchController {
         });
     }
 }
-
 export default CarpoolMatchController;

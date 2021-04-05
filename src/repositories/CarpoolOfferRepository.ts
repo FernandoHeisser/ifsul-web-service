@@ -1,3 +1,5 @@
+import CarpoolOffer from '../models/CarpoolOffer';
+import knex from '../database/connection';
 
 class CarpoolOfferRepository {
     tableName = "carpools_offered";
@@ -15,3 +17,4 @@ class CarpoolOfferRepository {
         
     }
 }
+export default CarpoolOfferRepository;
