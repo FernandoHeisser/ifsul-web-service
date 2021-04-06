@@ -4,20 +4,32 @@ import knex from '../database/connection';
 class UserRepository {
     tableName = "users";
 
-    createUser(user: User) {
-        
+    async createUser(user: User) {
+       try{
+            const id = await knex(this.tableName).insert(user);
+            return id;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
     async getUsers() {
         try{
-            const users: User[] = await knex(this.tableName).select('*');
+            const users: User[] = await knex.select('*').from(this.tableName);
             return users;  
         } catch (e) {
             console.log(e);
             return e;
         }
     }
-    getUserById(id: number) {
-        
+    async getUserById(id: number) {
+        try{
+            const user: User | undefined = await knex.select('*').from<User>(this.tableName).where('id', id).first();
+            return user;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
 }
 export default UserRepository;

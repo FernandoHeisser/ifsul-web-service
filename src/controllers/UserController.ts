@@ -15,12 +15,15 @@ class UserController {
 
         return response.json(users);
     }
-    getUserById(request: Request, response: Response) {
+    async getUserById(request: Request, response: Response) {
         const {id} = request.params;
+        const numberId: number = +id;
 
-        return response.json({
-            message: `UserController.getUserById(${id})`
-        });
+        const userRepository = new UserRepository();
+        
+        const user = await userRepository.getUserById(numberId);
+
+        return response.json(user);
     }
 }
 export default UserController;
