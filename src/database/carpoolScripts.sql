@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS carpools_requested (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	user_id INT NOT NULL,
-	phone VARCHAR(11) UNIQUE NOT NULL,
+	phone VARCHAR(11) NOT NULL,
 	from_city VARCHAR(255) NOT NULL,
 	from_neighborhood VARCHAR(255) NOT NULL,
 	from_street  VARCHAR(255) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS carpools_requested (
 CREATE TABLE IF NOT EXISTS carpools_offered (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	user_id INT NOT NULL,
-	phone VARCHAR(11) UNIQUE NOT NULL,
+	phone VARCHAR(11) NOT NULL,
 	from_city VARCHAR(255) NOT NULL,
 	from_neighborhood VARCHAR(255) NOT NULL,
 	from_street  VARCHAR(255) NOT NULL,
@@ -94,3 +94,30 @@ DELETE FROM carpools_requested WHERE id = ;
 DELETE FROM carpools_offered WHERE id = ;
 
 DELETE FROM carpool_match WHERE id = ;
+
+INSERT INTO users (email, name, cpf, password, phone, city, neighborhood, street, facebook, instagram, twitter, photo, carpool_done, carpool_canceled, carpool_offered, carpool_requested)
+VALUES 	( 'fernando@email.com', 'Fernando Heisser', '04310299032', 'password', '51995258425', 'city', 'neighborhood', 'street', 'facebook', 'instagram', 'twitter', 'photo', 0, 0, 0, 0);
+
+INSERT INTO users (email, name, cpf, password, phone, city, neighborhood, street, facebook, instagram, twitter, photo, carpool_done, carpool_canceled, carpool_offered, carpool_requested)
+VALUES 	( 'nanando@email.com', 'Nanando Fixa', '14310299033', 'password', '55995258425', 'city', 'neighborhood', 'street', 'facebook', 'instagram', 'twitter', 'photo', 0, 0, 0, 0);
+
+INSERT INTO carpools_offered (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, available_vacancies, canceled, done)
+VALUES 	( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-31 10:15:00', '2021-03-31 10:30:00', 4, 0, 0),
+		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-29 10:15:00', '2021-03-29 10:30:00', 4, 0, 0),
+		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-10 10:15:00', '2021-04-10 10:30:00', 4, 0, 0),
+		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-15 10:15:00', '2021-04-15 10:30:00', 4, 0, 0),
+		( 1, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-12 10:15:00', '2021-04-12 10:30:00', 4, 0, 0);
+
+INSERT INTO carpools_requested (user_id, phone, from_city, from_neighborhood, from_street, to_city, to_neighborhood, to_street, start_date, end_date, canceled, done)
+VALUES 	( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-31 10:15:00', '2021-03-31 10:30:00', 0, 0),
+		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-03-29 10:15:00', '2021-03-29 10:30:00', 0, 0),
+		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-10 10:15:00', '2021-04-10 10:30:00', 0, 0),
+		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-15 10:15:00', '2021-04-15 10:30:00', 0, 0),
+		( 2, '12345678900', 'A', 'B', 'C', 'D', 'E', 'F', '2021-04-12 10:15:00', '2021-04-12 10:30:00', 0, 0);
+        
+INSERT INTO carpool_match (carpool_request_id, carpool_offer_id, accepted)
+VALUES 	( 1, 1, 0),
+		( 2, 2, 0),
+		( 3, 3, 0),
+		( 4, 4, 0),
+		( 4, 5, 0);

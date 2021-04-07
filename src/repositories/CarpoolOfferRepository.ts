@@ -9,7 +9,7 @@ class CarpoolOfferRepository {
     }
     async getCarpoolOffers(){
         try{
-            const carpoolOffers: CarpoolOffer[] = await knex.select('*').from(this.tableName);
+            const carpoolOffers: CarpoolOffer[] = await knex.select('*').from(this.tableName).orderBy("start_date");
             return carpoolOffers;  
         } catch (e) {
             console.log(e);

@@ -9,7 +9,7 @@ class CarpoolRequestRepository {
     }
     async getCarpoolRequests(){
         try{
-            const carpoolRequests: CarpoolRequest[] = await knex.select('*').from(this.tableName);
+            const carpoolRequests: CarpoolRequest[] = await knex.select('*').from(this.tableName).orderBy("start_date");
             return carpoolRequests;  
         } catch (e) {
             console.log(e);
