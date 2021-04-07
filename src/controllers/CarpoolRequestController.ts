@@ -8,24 +8,32 @@ class CarpoolRequestController {
             message: "CarpoolRequestController.createCarpoolRequest"
         });
     }
-    getCarpoolRequests(request: Request, response: Response){
-        return response.json({
-            message: "CarpoolRequestController.getCarpoolRequests"
-        });
-    }
-    getCarpoolRequestById(request: Request, response: Response){
-        const {id} = request.params;
+    async getCarpoolRequests(request: Request, response: Response){
+        const carpoolRequestRepository = new CarpoolRequestRepository();
+        
+        const carpoolRequests = await carpoolRequestRepository.getCarpoolRequests()
 
-        return response.json({
-            message: `CarpoolRequestController.getCarpoolRequestById(${id})`
-        });
+        return response.json(carpoolRequests);
     }
-    getCarpoolRequestByUserId(request: Request, response: Response){
+    async getCarpoolRequestById(request: Request, response: Response){
         const {id} = request.params;
+        const numberId: number = +id;
 
-        return response.json({
-            message: `CarpoolRequestController.getCarpoolRequestByUserId(${id})`
-        });
+        const carpoolRequestRepository = new CarpoolRequestRepository();
+        
+        const carpoolRequest = await carpoolRequestRepository.getCarpoolRequestById(numberId);
+
+        return response.json(carpoolRequest);
+    }
+    async getCarpoolRequestByUserId(request: Request, response: Response){
+        const {id} = request.params;
+        const numberId: number = +id;
+
+        const carpoolRequestRepository = new CarpoolRequestRepository();
+        
+        const carpoolRequest = await carpoolRequestRepository.getCarpoolRequestByUserId(numberId);
+
+        return response.json(carpoolRequest);
     }
 }
 export default CarpoolRequestController;

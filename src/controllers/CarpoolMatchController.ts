@@ -8,26 +8,35 @@ class CarpoolMatchController {
             message: "CarpoolMatchController.createCarpoolMatch"
         });
     }
-    getCarpoolMatchsById(request: Request, response: Response){
+    async getCarpoolMatchsById(request: Request, response: Response){
         const {id} = request.params;
+        const numberId: number = +id;
 
-        return response.json({
-            message: `CarpoolMatchController.getCarpoolMatchsById(${id})`
-        });
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+        
+        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchsById(numberId);
+
+        return response.json(carpoolMatch);
     }
-    getCarpoolMatchsByCarpoolRequestId(request: Request, response: Response){
+    async getCarpoolMatchsByCarpoolRequestId(request: Request, response: Response){
         const {id} = request.params;
+        const numberId: number = +id;
 
-        return response.json({
-            message: `CarpoolMatchController.getCarpoolMatchsByCarpoolRequestId(${id})`
-        });
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+        
+        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchsByCarpoolRequestId(numberId);
+
+        return response.json(carpoolMatch);
     }
-    getCarpoolMatchsByCarpoolOfferId(request: Request, response: Response){
+    async getCarpoolMatchsByCarpoolOfferId(request: Request, response: Response){
         const {id} = request.params;
+        const numberId: number = +id;
 
-        return response.json({
-            message: `CarpoolMatchController.getCarpoolMatchsByCarpoolOfferId(${id})`
-        });
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+        
+        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchsByCarpoolOfferId(numberId);
+
+        return response.json(carpoolMatch);
     }
 }
 export default CarpoolMatchController;

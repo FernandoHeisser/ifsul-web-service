@@ -8,24 +8,32 @@ class CarpoolOfferController {
             message: "CarpoolOfferController.createCarpoolOffer"
         });
     }
-    getCarpoolOffers(request: Request, response: Response){
-        return response.json({
-            message: "CarpoolOfferController.getCarpoolOffers"
-        });
-    }
-    getCarpoolOfferById(request: Request, response: Response){
-        const {id} = request.params;
-
-        return response.json({
-            message: `CarpoolOfferController.getCarpoolOfferById(${id})`
-        });
-    }
-    getCarpoolOfferByUserId(request: Request, response: Response){
-        const {id} = request.params;
+    async getCarpoolOffers(request: Request, response: Response){
+        const carpoolOfferRepository = new CarpoolOfferRepository();
         
-        return response.json({
-            message: `CarpoolOfferController.getCarpoolOfferByUserId(${id})`
-        });
+        const carpoolOffers = await carpoolOfferRepository.getCarpoolOffers()
+
+        return response.json(carpoolOffers);
+    }
+    async getCarpoolOfferById(request: Request, response: Response){
+        const {id} = request.params;
+        const numberId: number = +id;
+
+        const carpoolOfferRepository = new CarpoolOfferRepository();
+        
+        const carpoolOffer = await carpoolOfferRepository.getCarpoolOfferById(numberId);
+
+        return response.json(carpoolOffer);
+    }
+    async getCarpoolOfferByUserId(request: Request, response: Response){
+        const {id} = request.params;
+        const numberId: number = +id;
+
+        const carpoolOfferRepository = new CarpoolOfferRepository();
+        
+        const carpoolOffer = await carpoolOfferRepository.getCarpoolOfferByUserId(numberId);
+
+        return response.json(carpoolOffer);
     }
 }
 export default CarpoolOfferController;
