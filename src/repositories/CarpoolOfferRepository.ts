@@ -7,14 +7,32 @@ class CarpoolOfferRepository {
     createCarpoolOffer(carpoolOffer: CarpoolOffer) {
 
     }
-    getCarpoolOffers(){
-        
+    async getCarpoolOffers(){
+        try{
+            const carpoolOffers: CarpoolOffer[] = await knex.select('*').from(this.tableName);
+            return carpoolOffers;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
-    getCarpoolOfferById(id: number){
-        
+    async getCarpoolOfferById(id: number){
+        try{
+            const carpoolOffer: CarpoolOffer | undefined = await knex.select('*').from<CarpoolOffer>(this.tableName).where('id', id).first();
+            return carpoolOffer;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
-    getCarpoolOfferByUserId(userId: number){
-        
+    async getCarpoolOfferByUserId(userId: number){
+        try{
+            const carpoolOffer: CarpoolOffer | undefined = await knex.select('*').from<CarpoolOffer>(this.tableName).where('user_id', userId).first();
+            return carpoolOffer;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
 }
 export default CarpoolOfferRepository;
