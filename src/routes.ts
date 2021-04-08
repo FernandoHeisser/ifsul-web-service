@@ -19,12 +19,14 @@ routes.get('/api/user/:id', userController.getUserById);
 routes.post('/api/carpool/request', carpoolRequestController.createCarpoolRequest);
 routes.get('/api/carpool/requests', carpoolRequestController.getCarpoolRequests);
 routes.get('/api/carpool/request/:id', carpoolRequestController.getCarpoolRequestById);
-routes.get('/api/carpool/request/user/:id', carpoolRequestController.getCarpoolRequestByUserId);
+routes.get('/api/carpool/requests/others/:id', carpoolRequestController.getCarpoolRequestsFromOtherUsers);
+routes.get('/api/carpool/requests/user/:id', carpoolRequestController.getCarpoolRequestsByUserId);
 
 routes.post('/api/carpool/offer', carpoolOfferController.createCarpoolOffer);
 routes.get('/api/carpool/offers', carpoolOfferController.getCarpoolOffers);
 routes.get('/api/carpool/offer/:id', carpoolOfferController.getCarpoolOfferById);
-routes.get('/api/carpool/offer/user/:id', carpoolOfferController.getCarpoolOfferByUserId);
+routes.get('/api/carpool/offers/others/:id', carpoolOfferController.getCarpoolOffersFromOtherUsers);
+routes.get('/api/carpool/offers/user/:id', carpoolOfferController.getCarpoolOffersByUserId);
 
 routes.post('/api/carpool/match', carpoolMatchController.createCarpoolMatch);
 routes.get('/api/carpool/match/:id', carpoolMatchController.getCarpoolMatchsById);

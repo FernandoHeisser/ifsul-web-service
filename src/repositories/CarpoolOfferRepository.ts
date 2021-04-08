@@ -7,16 +7,25 @@ class CarpoolOfferRepository {
     createCarpoolOffer(carpoolOffer: CarpoolOffer) {
 
     }
-    async getCarpoolOffers(){
+    async getCarpoolOffers() {
         try{
-            const carpoolOffers: CarpoolOffer[] = await knex.select('*').from(this.tableName).orderBy("start_date");
+            const carpoolOffers: CarpoolOffer[] = await knex.select('*').from<CarpoolOffer>(this.tableName).orderBy("start_date");
             return carpoolOffers;  
         } catch (e) {
             console.log(e);
             return e;
         }
     }
-    async getCarpoolOfferById(id: number){
+    async getCarpoolOffersFromOtherUsers(userId: number) {
+        try{
+            const carpoolOffers: CarpoolOffer[] = await knex.select('*').from<CarpoolOffer>(this.tableName).whereNot('user_id', userId).orderBy("start_date");
+            return carpoolOffers;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    }
+    async getCarpoolOfferById(id: number) {
         try{
             const carpoolOffer: CarpoolOffer | undefined = await knex.select('*').from<CarpoolOffer>(this.tableName).where('id', id).first();
             return carpoolOffer;  
@@ -25,10 +34,10 @@ class CarpoolOfferRepository {
             return e;
         }
     }
-    async getCarpoolOfferByUserId(userId: number){
+    async getCarpoolOffersByUserId(userId: number) {
         try{
-            const carpoolOffer: CarpoolOffer | undefined = await knex.select('*').from<CarpoolOffer>(this.tableName).where('user_id', userId).first();
-            return carpoolOffer;  
+            const carpoolOffers: CarpoolOffer[] = await knex.select('*').from<CarpoolOffer>(this.tableName).where('user_id', userId).orderBy("start_date");
+            return carpoolOffers;  
         } catch (e) {
             console.log(e);
             return e;

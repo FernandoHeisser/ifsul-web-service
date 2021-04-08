@@ -9,7 +9,16 @@ class CarpoolRequestRepository {
     }
     async getCarpoolRequests(){
         try{
-            const carpoolRequests: CarpoolRequest[] = await knex.select('*').from(this.tableName).orderBy("start_date");
+            const carpoolRequests: CarpoolRequest[] = await knex.select('*').from<CarpoolRequest>(this.tableName).orderBy("start_date");
+            return carpoolRequests;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    }
+    async getCarpoolRequestsFromOtherUsers(userId: number) {
+        try{
+            const carpoolRequests: CarpoolRequest[] = await knex.select('*').from<CarpoolRequest>(this.tableName).whereNot('user_id', userId).orderBy("start_date");
             return carpoolRequests;  
         } catch (e) {
             console.log(e);
@@ -25,10 +34,10 @@ class CarpoolRequestRepository {
             return e;
         }
     }
-    async getCarpoolRequestByUserId(userId: number){
+    async getCarpoolRequestsByUserId(userId: number){
         try{
-            const carpoolRequest: CarpoolRequest | undefined = await knex.select('*').from<CarpoolRequest>(this.tableName).where('user_id', userId).first();
-            return carpoolRequest;  
+            const carpoolRequests: CarpoolRequest[] = await knex.select('*').from<CarpoolRequest>(this.tableName).where('user_id', userId).orderBy("start_date");
+            return carpoolRequests;  
         } catch (e) {
             console.log(e);
             return e;

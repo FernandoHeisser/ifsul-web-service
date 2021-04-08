@@ -1,2 +1,0 @@
-- Criar get de carpools que não são do usuário.
-- Criar get de carpools que são apenas do usuário.
