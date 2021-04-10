@@ -32,5 +32,6 @@ routes.post('/api/carpool/match', carpoolMatchController.createCarpoolMatch);
 routes.get('/api/carpool/match/:id', carpoolMatchController.getCarpoolMatchsById);
 routes.get('/api/carpool/match/request/:id', carpoolMatchController.getCarpoolMatchsByCarpoolRequestId);
 routes.get('/api/carpool/match/offer/:id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferId);
+routes.get('/api/carpool/match/offer/:offer_id/request/request_id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId);
 
 export default routes;

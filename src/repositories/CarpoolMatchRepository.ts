@@ -34,5 +34,14 @@ class CarpoolMatchRepository {
             return e;
         }
     }
+    async getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(carpoolOfferId: number, carpoolRequestId: number){
+        try{
+            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('carpool_request_id', carpoolRequestId);
+            return carpoolMatchs;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    }
 }
 export default CarpoolMatchRepository;

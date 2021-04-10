@@ -38,5 +38,16 @@ class CarpoolMatchController {
 
         return response.json(carpoolMatch);
     }
+    async getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(request: Request, response: Response){
+        const {offer_id, request_id} = request.params;
+        const numberOfferId: number = +offer_id;
+        const numberRequestId: number = +request_id;
+
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+        
+        const carpoolMatchs = await carpoolMatchRepository.getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(numberOfferId, numberRequestId);
+
+        return response.json(carpoolMatchs);
+    }
 }
 export default CarpoolMatchController;
