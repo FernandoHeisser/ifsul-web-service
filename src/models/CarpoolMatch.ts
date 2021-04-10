@@ -3,6 +3,7 @@ class CarpoolMatch {
     carpoolRequestId: number;
     carpoolOfferId: number;
     accepted?: boolean;
+    canceled?: boolean;
 
     constructor(carpoolRequestId: number, carpoolOfferId: number) {
         this.carpoolRequestId = carpoolRequestId;
@@ -14,6 +15,9 @@ class CarpoolMatch {
     getCarpoolOfferId = () => this.carpoolOfferId;
 
     setAccepted = () => this.accepted = true;
-    getAccepted = () => this.accepted;
+    isAccepted = () => this.accepted;
+
+    setCanceled = () => this.canceled = true;
+    isCanceled = () => this.canceled;
 }
 export default CarpoolMatch;

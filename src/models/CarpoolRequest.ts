@@ -8,10 +8,12 @@ class CarpoolRequest {
     toCity: string;
     toNeighborhood: string;
     toStreet: string;
+    startDate: Date;
+    endDate: Date;
     done: boolean = false;
     canceled: boolean = false;
 
-    constructor(userId: number, phone: string, fromCity: string, fromNeighborhood: string, fromStreet: string, toCity: string, toNeighborhood: string, toStreet: string) {
+    constructor(userId: number, phone: string, fromCity: string, fromNeighborhood: string, fromStreet: string, toCity: string, toNeighborhood: string, toStreet: string, startDate: Date, endDate: Date) {
         this.userId = userId;
         this.phone = phone;
         this.fromCity = fromCity;
@@ -20,6 +22,8 @@ class CarpoolRequest {
         this.toCity = toCity;
         this.toNeighborhood = toNeighborhood;
         this.toStreet = toStreet;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     getId = () => this.id;
@@ -31,8 +35,10 @@ class CarpoolRequest {
     getToCity = () => this.toCity;
     getToNeighborhood = () => this.toNeighborhood;
     getToStreet = () => this.toStreet;
-    getDone = () => this.done;
-    getCanceled = () => this.canceled;
+    getStartDate = () => this.startDate;
+    getEndDate = () => this.endDate;
+    isDone = () => this.done;
+    isCanceled = () => this.canceled;
 
     setDone = () => this.done = true;
     setCanceled = () => this.canceled = true;

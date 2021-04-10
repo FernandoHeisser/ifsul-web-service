@@ -8,11 +8,13 @@ class CarpoolOffer {
     toCity: string;
     toNeighborhood: string;
     toStreet: string;
+    startDate: Date;
+    endDate: Date;
     done:boolean = false;
     canceled: boolean = false;
     availableVacancies: number;
 
-    constructor(userId: number, phone: string, fromCity: string, fromNeighborhood: string, fromStreet: string, toCity: string, toNeighborhood: string, toStreet: string, availableVacancies: number) {
+    constructor(userId: number, phone: string, fromCity: string, fromNeighborhood: string, fromStreet: string, toCity: string, toNeighborhood: string, toStreet: string, startDate: Date, endDate: Date, availableVacancies: number) {
         this.userId = userId;
         this.phone = phone;
         this.fromCity = fromCity;
@@ -21,6 +23,8 @@ class CarpoolOffer {
         this.toCity = toCity;
         this.toNeighborhood = toNeighborhood;
         this.toStreet = toStreet;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.availableVacancies = availableVacancies;
     }
 
@@ -33,9 +37,11 @@ class CarpoolOffer {
     getToCity = () => this.toCity;
     getToNeighborhood = () => this.toNeighborhood;
     getToStreet = () => this.toStreet;
-    getDone = () => this.done;
-    getCanceled = () => this.canceled;
+    getStartDate = () => this.startDate;
+    getEndDate = () => this.endDate;
     getAvailableVacancies = () => this.availableVacancies;
+    isDone = () => this.done;
+    isCanceled = () => this.canceled;
 
     setDone = () => this.done = true;
     setCanceled = () => this.canceled = true;
