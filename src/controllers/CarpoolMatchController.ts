@@ -14,7 +14,7 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchsById(numberId);
+        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchById(numberId);
 
         return response.json(carpoolMatch);
     }
@@ -24,7 +24,7 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchsByCarpoolRequestId(numberId);
+        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchesByCarpoolRequestId(numberId);
 
         return response.json(carpoolMatch);
     }
@@ -34,7 +34,7 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchsByCarpoolOfferId(numberId);
+        const carpoolMatch = await carpoolMatchRepository.getCarpoolMatchesByCarpoolOfferId(numberId);
 
         return response.json(carpoolMatch);
     }
@@ -45,7 +45,7 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatchs = await carpoolMatchRepository.getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(numberOfferId, numberRequestId);
+        const carpoolMatchs = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(numberOfferId, numberRequestId);
 
         return response.json(carpoolMatchs);
     }
