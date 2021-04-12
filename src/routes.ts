@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request } from 'express'
 
 import UserController from './controllers/UserController'
 import CarpoolRequestController from './controllers/CarpoolRequestController'
@@ -33,5 +33,7 @@ routes.get('/api/carpool/match/:id', carpoolMatchController.getCarpoolMatchsById
 routes.get('/api/carpool/match/request/:id', carpoolMatchController.getCarpoolMatchsByCarpoolRequestId);
 routes.get('/api/carpool/match/offer/:id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferId);
 routes.get('/api/carpool/match/offer/:offer_id/request/:request_id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId);
+
+routes.get('*', userController.badRequest);
 
 export default routes;
