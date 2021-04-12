@@ -7,7 +7,7 @@ class CarpoolMatchRepository {
     createCarpoolMatch(carpoolMatch: CarpoolMatch) {
 
     }
-    async getCarpoolMatchsById(id: number){
+    async getCarpoolMatchById(id: number){
         try{
             const carpoolMatches: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('id', id).first();
             return carpoolMatches;  
@@ -16,28 +16,28 @@ class CarpoolMatchRepository {
             return e;
         }
     }
-    async getCarpoolMatchsByCarpoolRequestId(carpoolRequestId: number){
+    async getCarpoolMatchesByCarpoolRequestId(carpoolRequestId: number){
         try{
-            const carpoolMatch: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_request_id', carpoolRequestId).first();
-            return carpoolMatch;  
-        } catch (e) {
-            console.log(e);
-            return e;
-        }
-    }
-    async getCarpoolMatchsByCarpoolOfferId(carpoolOfferId: number){
-        try{
-            const carpoolMatch: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).first();
-            return carpoolMatch;  
-        } catch (e) {
-            console.log(e);
-            return e;
-        }
-    }
-    async getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(carpoolOfferId: number, carpoolRequestId: number){
-        try{
-            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('carpool_request_id', carpoolRequestId);
+            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_request_id', carpoolRequestId);
             return carpoolMatchs;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    }
+    async getCarpoolMatchesByCarpoolOfferId(carpoolOfferId: number){
+        try{
+            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId);
+            return carpoolMatchs;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    }
+    async getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(carpoolOfferId: number, carpoolRequestId: number){
+        try{
+            const carpoolMatch: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('carpool_request_id', carpoolRequestId).first();
+            return carpoolMatch;  
         } catch (e) {
             console.log(e);
             return e;
