@@ -10,7 +10,6 @@ class CarpoolRequest {
     toStreet: string;
     startDate: Date;
     endDate: Date;
-    done: boolean = false;
     canceled: boolean = false;
 
     constructor(userId: number, phone: string, fromCity: string, fromNeighborhood: string, fromStreet: string, toCity: string, toNeighborhood: string, toStreet: string, startDate: Date, endDate: Date) {

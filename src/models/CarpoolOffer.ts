@@ -10,7 +10,6 @@ class CarpoolOffer {
     toStreet: string;
     startDate: Date;
     endDate: Date;
-    done:boolean = false;
     canceled: boolean = false;
     availableVacancies: number;
 

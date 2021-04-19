@@ -90,6 +90,13 @@ class CarpoolRequestController {
         }
 
         const carpoolRequestRepository = new CarpoolRequestRepository();
+
+        //SELECT * FROM carpool_requested WHERE id = id;
+        //UPDATE carpool_requested SET canceled = 1 WHERE id = id; 
+
+        //IF SELECT * FROM carpool_match WHERE carpool_request = id;
+        //THEN UPDATE carpool_match SET canceled = 1 WHERE carpool_request = id; 
+        //UPDATE carpool_offered SET available_vacancies = available_vacancies-1 WHERE carpool_offer = carpool_offer;
         
         return response.json(await carpoolRequestRepository.cancelCarpoolRequest(parseInt(id)));
     }
