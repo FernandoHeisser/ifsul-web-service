@@ -11,7 +11,7 @@ class CarpoolMatch {
     }
 
     getId = () => this.id;
-    getCarpoolRequest = () => this.carpoolRequestId;
+    getCarpoolRequestId = () => this.carpoolRequestId;
     getCarpoolOfferId = () => this.carpoolOfferId;
 
     setAccepted = () => this.accepted = true;
