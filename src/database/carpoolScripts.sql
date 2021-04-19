@@ -16,19 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
 	email VARCHAR(50) NOT NULL,
 	name VARCHAR(50) NOT NULL,
 	cpf VARCHAR(11) UNIQUE NOT NULL,
-	password VARCHAR(255) NOT NULL,
-	phone VARCHAR(11) UNIQUE NOT NULL,
-	city VARCHAR(255) NULL,
-	neighborhood VARCHAR(255) NULL,
-	street  VARCHAR(255) NULL,
-	facebook  VARCHAR(255) NULL,
-	instagram  VARCHAR(255) NULL,
-	twitter VARCHAR(255) NULL,
-	photo VARCHAR(255) NULL,
-	carpool_done INT NOT NULL DEFAULT 0,
-	carpool_canceled INT NOT NULL DEFAULT 0,
-	carpool_offered INT NOT NULL DEFAULT 0,
-	carpool_requested INT NOT NULL DEFAULT 0
+	password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS carpools_requested (
@@ -44,7 +32,6 @@ CREATE TABLE IF NOT EXISTS carpools_requested (
 	start_date DATETIME NOT NULL,
 	end_date DATETIME NOT NULL,
 	canceled BOOLEAN NOT NULL DEFAULT 0,
-	done BOOLEAN NOT NULL DEFAULT 0,
 	FOREIGN KEY fk_carpools_requested_users (user_id) REFERENCES users (id)
 );
 
@@ -62,7 +49,6 @@ CREATE TABLE IF NOT EXISTS carpools_offered (
 	end_date DATETIME NOT NULL,
 	available_vacancies INT NULL,
 	canceled BOOLEAN NOT NULL DEFAULT 0,
-	done BOOLEAN NOT NULL DEFAULT 0,
 	FOREIGN KEY fk_carpools_offered_users (user_id) REFERENCES users (id)
 );
 
