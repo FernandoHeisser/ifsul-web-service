@@ -11,7 +11,8 @@ class CarpoolMatchController {
         
         return response.json(carpoolMatchId);
     }
-    async getCarpoolMatchsById(request: Request, response: Response){
+
+    async getCarpoolMatchById(request: Request, response: Response){
         const {id} = request.params;
         
         if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
@@ -29,7 +30,8 @@ class CarpoolMatchController {
         }
         return response.json(carpoolMatch);
     }
-    async getCarpoolMatchsByCarpoolRequestId(request: Request, response: Response){
+
+    async getCarpoolMatchesByCarpoolRequestId(request: Request, response: Response){
         const {id} = request.params;
         
         if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
@@ -47,7 +49,8 @@ class CarpoolMatchController {
         }
         return response.json(carpoolMatchs);
     }
-    async getCarpoolMatchsByCarpoolOfferId(request: Request, response: Response){
+
+    async getCarpoolMatchesByCarpoolOfferId(request: Request, response: Response){
         const {id} = request.params;
         
         if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
@@ -65,7 +68,8 @@ class CarpoolMatchController {
         }
         return response.json(carpoolMatchs);
     }
-    async getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId(request: Request, response: Response){
+
+    async getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(request: Request, response: Response){
         const {offer_id, request_id} = request.params;
 
         if(isNaN(parseInt(offer_id)) || !isFinite(parseInt(offer_id)) || isNaN(parseInt(request_id)) || !isFinite(parseInt(request_id)) ){
@@ -75,13 +79,13 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatchs: CarpoolMatch[] = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(parseInt(offer_id), parseInt(request_id));
+        const carpoolMatch: CarpoolMatch | undefined = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(parseInt(offer_id), parseInt(request_id));
 
-        if(carpoolMatchs === undefined){
+        if(carpoolMatch === undefined){
             response.status(404);
             return response.json({status:"Not found"});
         }
-        return response.json(carpoolMatchs);
+        return response.json(carpoolMatch);
     }
 }
 export default CarpoolMatchController;

@@ -44,6 +44,7 @@ class UserController {
     }
 
     badRequest(request: Request, response: Response) {
+        response.status(400);
         return response.json({status:"Bad request"});
     }
 }

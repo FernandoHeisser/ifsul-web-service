@@ -29,10 +29,10 @@ routes.get('/api/carpool/offers/others/:id', carpoolOfferController.getCarpoolOf
 routes.get('/api/carpool/offers/user/:id', carpoolOfferController.getCarpoolOffersByUserId);
 
 routes.post('/api/carpool/match', carpoolMatchController.createCarpoolMatch);
-routes.get('/api/carpool/match/:id', carpoolMatchController.getCarpoolMatchsById);
-routes.get('/api/carpool/match/request/:id', carpoolMatchController.getCarpoolMatchsByCarpoolRequestId);
-routes.get('/api/carpool/match/offer/:id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferId);
-routes.get('/api/carpool/match/offer/:offer_id/request/:request_id', carpoolMatchController.getCarpoolMatchsByCarpoolOfferIdAndCarpoolRequestId);
+routes.get('/api/carpool/match/:id', carpoolMatchController.getCarpoolMatchById);
+routes.get('/api/carpool/match/request/:id', carpoolMatchController.getCarpoolMatchesByCarpoolRequestId);
+routes.get('/api/carpool/match/offer/:id', carpoolMatchController.getCarpoolMatchesByCarpoolOfferId);
+routes.get('/api/carpool/match/offer/:offer_id/request/:request_id', carpoolMatchController.getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId);
 
 routes.get('*', userController.badRequest);
 
