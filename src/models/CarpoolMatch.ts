@@ -1,5 +1,5 @@
 class CarpoolMatch {
-    id?: number;
+    privateid?: number;
     carpoolRequestId: number;
     carpoolOfferId: number;
     accepted?: boolean;
@@ -9,15 +9,5 @@ class CarpoolMatch {
         this.carpoolRequestId = carpoolRequestId;
         this.carpoolOfferId = carpoolOfferId;
     }
-
-    getId = () => this.id;
-    getCarpoolRequestId = () => this.carpoolRequestId;
-    getCarpoolOfferId = () => this.carpoolOfferId;
-
-    setAccepted = () => this.accepted = true;
-    isAccepted = () => this.accepted;
-
-    setCanceled = () => this.canceled = true;
-    isCanceled = () => this.canceled;
 }
 export default CarpoolMatch;

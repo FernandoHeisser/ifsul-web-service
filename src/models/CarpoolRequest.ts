@@ -25,22 +25,5 @@ class CarpoolRequest {
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
-    getId = () => this.id;
-    getUserId = () => this.userId;
-    getPhone = () => this.phone;
-    getFromCity = () => this.fromCity;
-    getFromNeighborhood = () => this.fromNeighborhood;
-    getFromStreet = () => this.fromStreet;
-    getToCity = () => this.toCity;
-    getToNeighborhood = () => this.toNeighborhood;
-    getToStreet = () => this.toStreet;
-    getStartDate = () => this.startDate;
-    getEndDate = () => this.endDate;
-    isDone = () => this.done;
-    isCanceled = () => this.canceled;
-
-    setDone = () => this.done = true;
-    setCanceled = () => this.canceled = true;
 }
 export default CarpoolRequest;
