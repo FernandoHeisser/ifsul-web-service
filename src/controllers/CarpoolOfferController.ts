@@ -80,5 +80,32 @@ class CarpoolOfferController {
         }
         return response.json(carpoolOffers);
     }
+
+    async cancelCarpoolOffer(request: Request, response: Response){
+        const {id} = request.params;
+        
+        if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
+            response.status(400);
+            return response.json({status:"Bad request"});
+        }
+    }
+
+    async addCarpoolOfferVacancy(request: Request, response: Response){
+        const {id} = request.params;
+        
+        if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
+            response.status(400);
+            return response.json({status:"Bad request"});
+        }
+    }
+
+    async removeCarpoolOfferVacancy(request: Request, response: Response){
+        const {id} = request.params;
+        
+        if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
+            response.status(400);
+            return response.json({status:"Bad request"});
+        }
+    }
 }
 export default CarpoolOfferController;

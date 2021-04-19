@@ -80,5 +80,14 @@ class CarpoolRequestController {
         }
         return response.json(carpoolRequests);
     }
+
+    async cancelCarpoolRequest(request: Request, response: Response){
+        const {id} = request.params;
+        
+        if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
+            response.status(400);
+            return response.json({status:"Bad request"});
+        }
+    }
 }
 export default CarpoolRequestController;
