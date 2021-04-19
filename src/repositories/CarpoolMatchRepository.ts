@@ -9,7 +9,7 @@ class CarpoolMatchRepository {
     }
     async getCarpoolMatchById(id: number){
         try{
-            const carpoolMatches: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('id', id).first();
+            const carpoolMatches: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('id', id).andWhere('canceled', 0).first();
             return carpoolMatches;  
         } catch (e) {
             console.log(e);
@@ -18,7 +18,7 @@ class CarpoolMatchRepository {
     }
     async getCarpoolMatchesByCarpoolRequestId(carpoolRequestId: number){
         try{
-            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_request_id', carpoolRequestId);
+            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_request_id', carpoolRequestId).andWhere('canceled', 0);
             return carpoolMatchs;  
         } catch (e) {
             console.log(e);
@@ -27,7 +27,7 @@ class CarpoolMatchRepository {
     }
     async getCarpoolMatchesByCarpoolOfferId(carpoolOfferId: number){
         try{
-            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId);
+            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('canceled', 0);
             return carpoolMatchs;  
         } catch (e) {
             console.log(e);
@@ -36,7 +36,7 @@ class CarpoolMatchRepository {
     }
     async getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(carpoolOfferId: number, carpoolRequestId: number){
         try{
-            const carpoolMatch: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('carpool_request_id', carpoolRequestId).first();
+            const carpoolMatch: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('carpool_request_id', carpoolRequestId).andWhere('canceled', 0).first();
             return carpoolMatch;  
         } catch (e) {
             console.log(e);

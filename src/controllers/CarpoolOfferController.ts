@@ -88,6 +88,10 @@ class CarpoolOfferController {
             response.status(400);
             return response.json({status:"Bad request"});
         }
+
+        const carpoolOfferRepository = new CarpoolOfferRepository();
+        
+        return response.json(await carpoolOfferRepository.cancelCarpoolOffer(parseInt(id)));
     }
 
     async addCarpoolOfferVacancy(request: Request, response: Response){

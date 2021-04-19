@@ -88,6 +88,10 @@ class CarpoolRequestController {
             response.status(400);
             return response.json({status:"Bad request"});
         }
+
+        const carpoolRequestRepository = new CarpoolRequestRepository();
+        
+        return response.json(await carpoolRequestRepository.cancelCarpoolRequest(parseInt(id)));
     }
 }
 export default CarpoolRequestController;
