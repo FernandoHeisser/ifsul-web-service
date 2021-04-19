@@ -4,10 +4,12 @@ import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository'
 
 class CarpoolOfferController {
 
-    createCarpoolOffer(request: Request, response: Response) {
-        return response.json({
-            message: "CarpoolOfferController.createCarpoolOffer"
-        });
+    async createCarpoolOffer(request: Request, response: Response) {
+        const carpoolOfferRepository = new CarpoolOfferRepository();
+
+        const carpoolOfferId = await carpoolOfferRepository.createCarpoolOffer(request.body);
+        
+        return response.json(carpoolOfferId);
     }
 
     async getCarpoolOffers(request: Request, response: Response) {

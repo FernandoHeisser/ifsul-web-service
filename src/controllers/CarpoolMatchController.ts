@@ -4,10 +4,12 @@ import CarpoolMatchRepository from '../repositories/CarpoolMatchRepository'
 
 class CarpoolMatchController {
 
-    createCarpoolMatch(request: Request, response: Response){
-        return response.json({
-            message: "CarpoolMatchController.createCarpoolMatch"
-        });
+    async createCarpoolMatch(request: Request, response: Response){
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+
+        const carpoolMatchId = await carpoolMatchRepository.createCarpoolMatch(request.body);
+        
+        return response.json(carpoolMatchId);
     }
     async getCarpoolMatchsById(request: Request, response: Response){
         const {id} = request.params;

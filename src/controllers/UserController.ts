@@ -4,16 +4,18 @@ import UserRepository from '../repositories/UserRepository'
 
 class UserController {
 
-    createUser(request: Request, response: Response) {
-        return response.json({
-            message: "UserController.createUser"
-        });
+    async createUser(request: Request, response: Response) {
+        const userRepository = new UserRepository();
+
+        const userId = await userRepository.createUser(request.body);
+        
+        return response.json(userId);
     }
     
     async getUsers(request: Request, response: Response) {
         const userRepository = new UserRepository();
         
-        const users: User[] = await userRepository.getUsers()
+        const users: User[] = await userRepository.getUsers();
 
         if(users === undefined){
             response.status(404);

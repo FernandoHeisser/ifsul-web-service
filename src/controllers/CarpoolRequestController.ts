@@ -4,10 +4,12 @@ import CarpoolRequestRepository from '../repositories/CarpoolRequestRepository'
 
 class CarpoolRequestController {
 
-    createCarpoolRequest(request: Request, response: Response){
-        return response.json({
-            message: "CarpoolRequestController.createCarpoolRequest"
-        });
+    async createCarpoolRequest(request: Request, response: Response){
+        const carpoolRequestRepository = new CarpoolRequestRepository();
+
+        const carpoolRequestId = await carpoolRequestRepository.createCarpoolRequest(request.body);
+        
+        return response.json(carpoolRequestId);
     }
 
     async getCarpoolRequests(request: Request, response: Response){
