@@ -36,9 +36,8 @@ routes.get('/api/carpool/match/offer/:offer_id/request/:request_id', carpoolMatc
 
 routes.put('/api/cancel/request/:id', carpoolRequestController.cancelCarpoolRequest);
 routes.put('/api/cancel/offer/:id', carpoolOfferController.cancelCarpoolOffer);
-
-//routes.put('/api/vacancy/add/:id', carpoolOfferController.addCarpoolOfferVacancy);
-//routes.put('/api/vacancy/remove/:id', carpoolOfferController.removeCarpoolOfferVacancy);
+routes.put('/api/vacancy/add/:id', carpoolOfferController.addCarpoolOfferVacancy);
+routes.put('/api/vacancy/remove/:id', carpoolOfferController.removeCarpoolOfferVacancy);
 
 routes.get('*', userController.badRequest);
 routes.post('*', userController.badRequest);
