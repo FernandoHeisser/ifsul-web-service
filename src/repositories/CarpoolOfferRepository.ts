@@ -4,8 +4,14 @@ import knex from '../database/connection';
 class CarpoolOfferRepository {
     tableName = "carpools_offered";
 
-    createCarpoolOffer(carpoolOffer: CarpoolOffer) {
-
+    async createCarpoolOffer(carpoolOffer: CarpoolOffer) {
+        try{
+            const id = await knex(this.tableName).insert(carpoolOffer);
+            return id;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
     async getCarpoolOffers() {
         try{
@@ -47,6 +53,36 @@ class CarpoolOfferRepository {
     async cancelCarpoolOffer(id: number){
         try{
             return await knex(this.tableName).update({canceled: 1}).where('id', id);   
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    }
+
+    async removeVacancy(id: number){
+        try{
+            const carpoolOffer = await this.getCarpoolOfferById(id);
+            if(carpoolOffer == undefined || carpoolOffer == null) {
+                return undefined;
+            }
+            const vacancy = carpoolOffer.available_vacancies - 1;
+
+            return await knex(this.tableName).update({available_vacancies: vacancy}).where('id', id);   
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
+    }
+
+    async addVacancy(id: number){
+        try{
+            const carpoolOffer = await this.getCarpoolOfferById(id);
+            if(carpoolOffer == undefined || carpoolOffer == null) {
+                return undefined;
+            }
+            const vacancy = carpoolOffer.available_vacancies + 1;
+
+            return await knex(this.tableName).update({available_vacancies: vacancy}).where('id', id);   
         } catch (e) {
             console.log(e);
             return e;

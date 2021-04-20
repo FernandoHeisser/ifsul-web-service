@@ -4,8 +4,14 @@ import knex from '../database/connection';
 class CarpoolMatchRepository {
     tableName = "carpool_match";
 
-    createCarpoolMatch(carpoolMatch: CarpoolMatch) {
-
+    async createCarpoolMatch(carpoolMatch: CarpoolMatch) {
+        try{
+            const id = await knex(this.tableName).insert(carpoolMatch);
+            return id;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
 
     async getCarpoolMatchById(id: number){
@@ -50,7 +56,7 @@ class CarpoolMatchRepository {
 
     async cancelCarpoolMatch(id: number){
         try{
-            return await knex(this.tableName).update({canceled: 1}).where('id', id);;  
+            return await knex(this.tableName).update({canceled: 1}).where('id', id);
         } catch (e) {
             console.log(e);
             return e;

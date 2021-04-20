@@ -1,5 +1,5 @@
 class CarpoolMatch {
-    privateid?: number;
+    id?: number;
     carpoolRequestId: number;
     carpoolOfferId: number;
     accepted?: boolean;

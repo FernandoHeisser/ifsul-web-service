@@ -4,8 +4,14 @@ import knex from '../database/connection';
 class CarpoolRequestRepository {
     tableName = "carpools_requested";
 
-    createCarpoolRequest(carpoolRequest: CarpoolRequest){
-        
+    async createCarpoolRequest(carpoolRequest: CarpoolRequest){
+        try{
+            const id = await knex(this.tableName).insert(carpoolRequest);
+            return id;  
+        } catch (e) {
+            console.log(e);
+            return e;
+        }
     }
     async getCarpoolRequests(){
         try{

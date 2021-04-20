@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
+import CarpoolMatch from '../models/CarpoolMatch';
 import CarpoolOffer from '../models/CarpoolOffer';
-import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository'
+import CarpoolMatchRepository from '../repositories/CarpoolMatchRepository';
+import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository';
 
 class CarpoolOfferController {
 
@@ -15,7 +17,7 @@ class CarpoolOfferController {
     async getCarpoolOffers(request: Request, response: Response) {
         const carpoolOfferRepository = new CarpoolOfferRepository();
         
-        const carpoolOffers: CarpoolOffer[] = await carpoolOfferRepository.getCarpoolOffers()
+        const carpoolOffers: CarpoolOffer[] = await carpoolOfferRepository.getCarpoolOffers();
 
         if(carpoolOffers === undefined){
             response.status(404);
@@ -90,8 +92,59 @@ class CarpoolOfferController {
         }
 
         const carpoolOfferRepository = new CarpoolOfferRepository();
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+
+        const carpoolOffer: CarpoolOffer = await carpoolOfferRepository.getCarpoolOfferById(parseInt(id));
         
-        return response.json(await carpoolOfferRepository.cancelCarpoolOffer(parseInt(id)));
+        if(carpoolOffer == undefined || carpoolOffer == null) {
+            response.status(404);
+            return response.json({status:"Not found"});
+        }
+
+        const status = await carpoolOfferRepository.cancelCarpoolOffer(parseInt(id));
+        
+        if(status == undefined || status == null) {
+            response.status(404);
+            return response.json({status:"Not found"});
+        }
+
+        const match: CarpoolMatch = await carpoolMatchRepository.getCarpoolMatchesByCarpoolOfferId(parseInt(id));
+        
+        if(match.id != undefined || match.id != null) {
+            await carpoolMatchRepository.cancelCarpoolMatch(match.id);
+        } 
+        
+        return response.json(status);
+    }
+
+    async removeCarpoolOfferVacancy(request: Request, response: Response) {
+        const {id} = request.params;
+        
+        if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
+            response.status(400);
+            return response.json({status:"Bad request"});
+        }
+
+        const carpoolOfferRepository = new CarpoolOfferRepository();
+
+        const status = await carpoolOfferRepository.removeVacancy(parseInt(id));
+
+        return response.json(status);
+    }
+
+    async addCarpoolOfferVacancy(request: Request, response: Response) {
+        const {id} = request.params;
+        
+        if(isNaN(parseInt(id)) || !isFinite(parseInt(id))){
+            response.status(400);
+            return response.json({status:"Bad request"});
+        }
+
+        const carpoolOfferRepository = new CarpoolOfferRepository();
+
+        const status = await carpoolOfferRepository.addVacancy(parseInt(id));
+
+        return response.json(status);
     }
 }
 export default CarpoolOfferController;
