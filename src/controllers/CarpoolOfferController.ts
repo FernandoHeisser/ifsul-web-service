@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import CarpoolMatch from '../models/CarpoolMatch';
 import CarpoolOffer from '../models/CarpoolOffer';
 import CarpoolMatchRepository from '../repositories/CarpoolMatchRepository';
 import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository';
@@ -94,7 +93,7 @@ class CarpoolOfferController {
         const carpoolOfferRepository = new CarpoolOfferRepository();
         const carpoolMatchRepository = new CarpoolMatchRepository();
 
-        const carpoolOffer: CarpoolOffer = await carpoolOfferRepository.getCarpoolOfferById(parseInt(id));
+        const carpoolOffer = await carpoolOfferRepository.getCarpoolOfferById(parseInt(id));
         
         if(carpoolOffer == undefined || carpoolOffer == null) {
             response.status(404);
@@ -108,7 +107,7 @@ class CarpoolOfferController {
             return response.json({status:"Not found"});
         }
 
-        const match: CarpoolMatch = await carpoolMatchRepository.getCarpoolMatchesByCarpoolOfferId(parseInt(id));
+        const match = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferId(parseInt(id));
         
         if(match.id != undefined || match.id != null) {
             await carpoolMatchRepository.cancelCarpoolMatch(match.id);

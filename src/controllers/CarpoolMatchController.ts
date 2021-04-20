@@ -22,7 +22,7 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatch: CarpoolMatch = await carpoolMatchRepository.getCarpoolMatchById(parseInt(id));
+        const carpoolMatch: CarpoolMatch | undefined = await carpoolMatchRepository.getCarpoolMatchById(parseInt(id));
 
         if(carpoolMatch === undefined){
             response.status(404);
@@ -41,13 +41,13 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatchs: CarpoolMatch[] = await carpoolMatchRepository.getCarpoolMatchesByCarpoolRequestId(parseInt(id));
+        const carpoolMatch: CarpoolMatch | undefined = await carpoolMatchRepository.getCarpoolMatchByCarpoolRequestId(parseInt(id));
 
-        if(carpoolMatchs === undefined){
+        if(carpoolMatch === undefined){
             response.status(404);
             return response.json({status:"Not found"});
         }
-        return response.json(carpoolMatchs);
+        return response.json(carpoolMatch);
     }
 
     async getCarpoolMatchesByCarpoolOfferId(request: Request, response: Response){
@@ -60,13 +60,13 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatchs: CarpoolMatch[] = await carpoolMatchRepository.getCarpoolMatchesByCarpoolOfferId(parseInt(id));
+        const carpoolMatch: CarpoolMatch | undefined = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferId(parseInt(id));
 
-        if(carpoolMatchs === undefined){
+        if(carpoolMatch === undefined){
             response.status(404);
             return response.json({status:"Not found"});
         }
-        return response.json(carpoolMatchs);
+        return response.json(carpoolMatch);
     }
 
     async getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(request: Request, response: Response){
@@ -86,6 +86,25 @@ class CarpoolMatchController {
             return response.json({status:"Not found"});
         }
         return response.json(carpoolMatch);
+    }
+
+    async acceptCarpoolMatch(request: Request, response: Response){
+        const {offer_id, request_id} = request.params;
+
+        if(isNaN(parseInt(offer_id)) || !isFinite(parseInt(offer_id)) || isNaN(parseInt(request_id)) || !isFinite(parseInt(request_id)) ){
+            response.status(400);
+            return response.json({status:"Bad request"});
+        }
+
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+        
+        const status = await carpoolMatchRepository.acceptCarpoolMatch(parseInt(offer_id), parseInt(request_id));
+
+        if(status === undefined){
+            response.status(404);
+            return response.json({status:"Not found"});
+        }
+        return response.json(status);
     }
 }
 export default CarpoolMatchController;
