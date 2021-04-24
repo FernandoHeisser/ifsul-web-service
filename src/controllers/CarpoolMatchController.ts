@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import CarpoolMatch from '../models/CarpoolMatch';
 import CarpoolMatchRepository from '../repositories/CarpoolMatchRepository'
+import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository'
 
 class CarpoolMatchController {
 
@@ -41,13 +42,13 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatch: CarpoolMatch | undefined = await carpoolMatchRepository.getCarpoolMatchByCarpoolRequestId(parseInt(id));
+        const carpoolMatches: CarpoolMatch[] = await carpoolMatchRepository.getCarpoolMatchByCarpoolRequestId(parseInt(id));
 
-        if(carpoolMatch === undefined){
+        if(carpoolMatches === undefined || carpoolMatches.length === 0){
             response.status(404);
             return response.json({status:"Not found"});
         }
-        return response.json(carpoolMatch);
+        return response.json(carpoolMatches);
     }
 
     async getCarpoolMatchesByCarpoolOfferId(request: Request, response: Response){
@@ -60,13 +61,13 @@ class CarpoolMatchController {
 
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
-        const carpoolMatch: CarpoolMatch | undefined = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferId(parseInt(id));
+        const carpoolMatches: CarpoolMatch[] = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferId(parseInt(id));
 
-        if(carpoolMatch === undefined){
+        if(carpoolMatches === undefined || carpoolMatches.length === 0){
             response.status(404);
             return response.json({status:"Not found"});
         }
-        return response.json(carpoolMatch);
+        return response.json(carpoolMatches);
     }
 
     async getCarpoolMatchByCarpoolOfferIdAndCarpoolRequestId(request: Request, response: Response){
@@ -99,10 +100,13 @@ class CarpoolMatchController {
         const carpoolMatchRepository = new CarpoolMatchRepository();
         
         const status = await carpoolMatchRepository.acceptCarpoolMatch(parseInt(offer_id), parseInt(request_id));
-
+        
         if(status === undefined){
             response.status(404);
             return response.json({status:"Not found"});
+        } else {
+            const carpoolOfferRepository = new CarpoolOfferRepository();
+            await carpoolOfferRepository.removeVacancy(parseInt(offer_id));
         }
         return response.json(status);
     }

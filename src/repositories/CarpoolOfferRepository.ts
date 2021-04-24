@@ -76,13 +76,13 @@ class CarpoolOfferRepository {
 
     async addVacancy(id: number){
         try{
-            const carpoolOffer = await this.getCarpoolOfferById(id);
-            if(carpoolOffer == undefined || carpoolOffer == null) {
+            const carpoolOffer: CarpoolOffer | undefined = await knex.select('*').from<CarpoolOffer>(this.tableName).where('id', id).andWhere('canceled', 0).first();
+            if(carpoolOffer === undefined) {
                 return undefined;
             }
-            const vacancy = carpoolOffer.available_vacancies + 1;
+            const vacancies = carpoolOffer.available_vacancies + 1;
 
-            return await knex(this.tableName).update({available_vacancies: vacancy}).where('id', id);   
+            return await knex(this.tableName).update({available_vacancies: vacancies}).where('id', id);   
         } catch (e) {
             console.log(e);
             return e;

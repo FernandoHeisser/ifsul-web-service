@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import CarpoolMatch from '../models/CarpoolMatch';
 import CarpoolRequest from '../models/CarpoolRequest';
 import CarpoolMatchRepository from '../repositories/CarpoolMatchRepository';
 import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository';
@@ -92,34 +93,22 @@ class CarpoolRequestController {
         }
 
         const carpoolRequestRepository = new CarpoolRequestRepository();
-        const carpoolOfferRepository = new CarpoolOfferRepository();
-        const carpoolMatchRepository = new CarpoolMatchRepository();
-
-        const carpooRequest = await carpoolRequestRepository.getCarpoolRequestById(parseInt(id));
-        
-        if(carpooRequest == undefined || carpooRequest == null) {
-            response.status(404);
-            return response.json({status:"Not found"});
-        }
-
         const status = await carpoolRequestRepository.cancelCarpoolRequest(parseInt(id));
         
-        if(status == undefined || status == null) {
-           response.status(404);
-           return response.json({status:"Not found"});
-        }
-
-        const match = await carpoolMatchRepository.getCarpoolMatchByCarpoolRequestId(parseInt(id));
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+        const matches: CarpoolMatch[] = await carpoolMatchRepository.getCarpoolMatchByCarpoolRequestId(parseInt(id));
         
-        if(match.id != undefined || match.id != null) {
-            
-            await carpoolMatchRepository.cancelCarpoolMatch(match.id);
+        if(matches !== undefined && matches.length !== 0) {
+            matches.map(async match => {
+                if(match.id !== undefined) {
+                    await carpoolMatchRepository.cancelCarpoolMatch(match.id);
+                    if(match.accepted) {
+                        const carpoolOfferRepository = new CarpoolOfferRepository();
+                        await carpoolOfferRepository.addVacancy(match.carpool_offer_id);
+                    }
+                }
 
-            const carpoolOffer = await carpoolOfferRepository.getCarpoolOfferById(match.carpool_offer_id);
-            
-            if(carpoolOffer.id != undefined || carpoolOffer.id != null) {
-                await carpoolOfferRepository.removeVacancy(carpoolOffer.id);
-            }
+            });
         } 
         
         return response.json(status);

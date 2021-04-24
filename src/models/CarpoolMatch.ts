@@ -1,13 +1,13 @@
 class CarpoolMatch {
     id?: number;
-    carpoolRequestId: number;
-    carpoolOfferId: number;
+    carpool_request_id: number;
+    carpool_offer_id: number;
     accepted?: boolean;
     canceled?: boolean;
 
     constructor(carpoolRequestId: number, carpoolOfferId: number) {
-        this.carpoolRequestId = carpoolRequestId;
-        this.carpoolOfferId = carpoolOfferId;
+        this.carpool_request_id = carpoolRequestId;
+        this.carpool_offer_id = carpoolOfferId;
     }
 }
 export default CarpoolMatch;

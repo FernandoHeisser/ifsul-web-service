@@ -1,30 +1,30 @@
 class CarpoolOffer {
     id?: number;
-    userId: number;
+    user_id: number;
     phone: string;
-    fromCity: string;
-    fromNeighborhood: string;
-    fromStreet: string;
-    toCity: string;
-    toNeighborhood: string;
-    toStreet: string;
-    startDate: Date;
-    endDate: Date;
+    from_city: string;
+    from_neighborhood: string;
+    from_street: string;
+    to_city: string;
+    to_neighborhood: string;
+    to_street: string;
+    start_date: Date;
+    end_date: Date;
     canceled: boolean = false;
-    availableVacancies: number;
+    available_vacancies: number;
 
     constructor(userId: number, phone: string, fromCity: string, fromNeighborhood: string, fromStreet: string, toCity: string, toNeighborhood: string, toStreet: string, startDate: Date, endDate: Date, availableVacancies: number) {
-        this.userId = userId;
+        this.user_id = userId;
         this.phone = phone;
-        this.fromCity = fromCity;
-        this.fromNeighborhood = fromNeighborhood;
-        this.fromStreet = fromStreet;
-        this.toCity = toCity;
-        this.toNeighborhood = toNeighborhood;
-        this.toStreet = toStreet;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.availableVacancies = availableVacancies;
+        this.from_city = fromCity;
+        this.from_neighborhood = fromNeighborhood;
+        this.from_street = fromStreet;
+        this.to_city = toCity;
+        this.to_neighborhood = toNeighborhood;
+        this.to_street = toStreet;
+        this.start_date = startDate;
+        this.end_date = endDate;
+        this.available_vacancies = availableVacancies;
     }
 }
 export default CarpoolOffer;

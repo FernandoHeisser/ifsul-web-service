@@ -26,8 +26,8 @@ class CarpoolMatchRepository {
 
     async getCarpoolMatchByCarpoolRequestId(carpoolRequestId: number){
         try{
-            const carpoolMatch: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_request_id', carpoolRequestId).andWhere('canceled', 0).first();
-            return carpoolMatch;  
+            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_request_id', carpoolRequestId).andWhere('canceled', 0);
+            return carpoolMatchs;  
         } catch (e) {
             console.log(e);
             return e;
@@ -36,8 +36,8 @@ class CarpoolMatchRepository {
 
     async getCarpoolMatchByCarpoolOfferId(carpoolOfferId: number){
         try{
-            const carpoolMatch: CarpoolMatch | undefined = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('canceled', 0).first();
-            return carpoolMatch;  
+            const carpoolMatchs: CarpoolMatch[] = await knex.select('*').from<CarpoolMatch>(this.tableName).where('carpool_offer_id', carpoolOfferId).andWhere('canceled', 0);
+            return carpoolMatchs;  
         } catch (e) {
             console.log(e);
             return e;

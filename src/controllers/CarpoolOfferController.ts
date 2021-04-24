@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import CarpoolMatch from '../models/CarpoolMatch';
 import CarpoolOffer from '../models/CarpoolOffer';
 import CarpoolMatchRepository from '../repositories/CarpoolMatchRepository';
 import CarpoolOfferRepository from '../repositories/CarpoolOfferRepository';
@@ -91,26 +92,16 @@ class CarpoolOfferController {
         }
 
         const carpoolOfferRepository = new CarpoolOfferRepository();
-        const carpoolMatchRepository = new CarpoolMatchRepository();
-
-        const carpoolOffer = await carpoolOfferRepository.getCarpoolOfferById(parseInt(id));
-        
-        if(carpoolOffer == undefined || carpoolOffer == null) {
-            response.status(404);
-            return response.json({status:"Not found"});
-        }
-
         const status = await carpoolOfferRepository.cancelCarpoolOffer(parseInt(id));
         
-        if(status == undefined || status == null) {
-            response.status(404);
-            return response.json({status:"Not found"});
-        }
-
-        const match = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferId(parseInt(id));
+        const carpoolMatchRepository = new CarpoolMatchRepository();
+        const matches: CarpoolMatch[] = await carpoolMatchRepository.getCarpoolMatchByCarpoolOfferId(parseInt(id));
         
-        if(match.id != undefined || match.id != null) {
-            await carpoolMatchRepository.cancelCarpoolMatch(match.id);
+        if(matches !== undefined && matches.length !== 0) {
+            matches.map(async match => {
+                if(match.id !== undefined)
+                    await carpoolMatchRepository.cancelCarpoolMatch(match.id);
+            });
         } 
         
         return response.json(status);
