@@ -3,9 +3,10 @@ import knex from 'knex';
 const connection = knex({
     client: 'mysql2',
     connection: {
-        host : '127.0.0.1',
-        user : 'fernando',
-        password : '123',
+        host : "caronas-mysql.mysql.database.azure.com",
+        port : 3306,
+        user : "fernando@caronas-mysql",
+        password : "caronas123H",
         database : 'carpool'
     },
     useNullAsDefault: true
